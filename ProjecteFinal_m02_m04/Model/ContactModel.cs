@@ -14,11 +14,11 @@ namespace ProjecteFinal_m02_m04.Model
         private String phone;
         private String company;
 
-        public int CustomerId { get =>  customerId; set => customerId = value;}
-        public String Name { get => name; set => name = value;}
-        public String Email { get => email; set => email = value;}
-        public String Phone { get => phone; set => phone = value;}
-        public String Company { get => company; set => company = value;}
+        public int CustomerId { get => customerId; set => customerId = value; }
+        public String Name { get => name; set => name = value; }
+        public String Email { get => email; set => email = value; }
+        public String Phone { get => phone; set => phone = value; }
+        public String Company { get => company; set => company = value; }
 
 
 

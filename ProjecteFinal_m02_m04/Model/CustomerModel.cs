@@ -20,13 +20,5 @@ namespace ProjecteFinal_m02_m04.Model
         public string Phone { get => phone; set => phone = value; }
         public string Address { get => address; set => address = value; }
 
-        public CustomerModel(CustomerModel) 
-        {
-            
-        }
-
-        public CustomerModel()
-        {
-        }
     }
 }

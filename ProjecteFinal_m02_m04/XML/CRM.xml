@@ -1,38 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <crm>
-  <customers>
-    <customer id="1">
-      <name>John Doe</name>
-      <email>john.doe@example.com</email>
-      <phone>123-456-7890</phone>
-      <address street="123 Main St" city="Los Angeles" state="CA" zipcode="90001" />
-    </customer>
-    <customer id="2">
-      <name>Jane Smith</name>
-      <email>jane.smith@example.com</email>
-      <phone>987-654-3210</phone>
-      <address street="456 Elm St" city="New York" state="NY" zipcode="10001" />
-    </customer>
-    <customer id="3">
-      <name>Michael Johnson</name>
-      <email>michael.johnson@example.com</email>
-      <phone>555-555-5555</phone>
-      <address street="789 Oak St" city="Chicago" state="IL" zipcode="60601" />
-    </customer>
-    <customer id="4">
-      <name>Lisa Davis</name>
-      <email>lisa.davis@example.com</email>
-      <phone>222-333-4444</phone>
-      <address street="987 Pine St" city="Houston" state="TX" zipcode="77001" />
-    </customer>
-    <customer id="5">
-      <name>Robert Johnson</name>
-      <email>robert.johnson@example.com</email>
-      <phone>999-888-7777</phone>
-      <address street="456 Maple St" city="Seattle" state="WA" zipcode="98101" />
-    </customer>
-  </customers>
-  <contacts>
+	<customers>
+		<customer id="1">
+			<name>John Doe</name>
+			<email>john.doe@example.com</email>
+			<phone>123-456-7890</phone>
+			<address street="123 Main St" city="Los Angeles" state="CA" zipcode="90001" />
+		</customer>
+		<customer id="2">
+			<name>Jane Smith</name>
+			<email>jane.smith@example.com</email>
+			<phone>987-654-3210</phone>
+			<address street="456 Elm St" city="New York" state="NY" zipcode="10001" />
+		</customer>
+		<customer id="3">
+			<name>Michael Johnson</name>
+			<email>michael.johnson@example.com</email>
+			<phone>555-555-5555</phone>
+			<address street="789 Oak St" city="Chicago" state="IL" zipcode="60601" />
+		</customer>
+		<customer id="4">
+			<name>Lisa Davis</name>
+			<email>lisa.davis@example.com</email>
+			<phone>222-333-4444</phone>
+			<address street="987 Pine St" city="Houston" state="TX" zipcode="77001" />
+		</customer>
+		<customer id="5">
+			<name>Robert Johnson</name>
+			<email>robert.johnson@example.com</email>
+			<phone>999-888-7777</phone>
+			<address street="456 Maple St" city="Seattle" state="WA" zipcode="98101" />
+		</customer>
+	</customers>
+	<contacts>
 		<contact id="1">
 			<customerId>1</customerId>
 			<name>Adam Johnson</name>
@@ -67,25 +67,23 @@
 			<email>amy.roberts@example.com</email>
 			<phone>222-111-3333</phone>
 			<company>Global Tech</company>
-			<company>Global Tech</company>
-			<company>Global Tech</company>
 		</contact>
 	</contacts>
-  <opportunities>
-    <opportunity id="1">
-      <customerId>1</customerId>
-      <amount>5000</amount>
-      <status>Open</status>
-    </opportunity>
-    <opportunity id="2">
-      <customerId>2</customerId>
-      <amount>10000</amount>
-      <status>Closed</status>
-    </opportunity>
-    <opportunity id="3">
-      <customerId>1</customerId>
-      <amount>8000</amount>
-      <status>In Progress</status>
-    </opportunity>
-  </opportunities>
+	<opportunities>
+		<opportunity id="1">
+			<customerId>1</customerId>
+			<amount>5000</amount>
+			<status>Open</status>
+		</opportunity>
+		<opportunity id="2">
+			<customerId>2</customerId>
+			<amount>10000</amount>
+			<status>Closed</status>
+		</opportunity>
+		<opportunity id="3">
+			<customerId>1</customerId>
+			<amount>8000</amount>
+			<status>In Progress</status>
+		</opportunity>
+	</opportunities>
 </crm>
