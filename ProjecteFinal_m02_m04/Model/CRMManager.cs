@@ -1,4 +1,5 @@
 ﻿using System.Xml;
+using ProjecteFinal_m02_m04.BBDD;
 
 namespace ProjecteFinal_m02_m04.Model
 {
@@ -37,9 +38,9 @@ namespace ProjecteFinal_m02_m04.Model
                 docCRM.Load(filePath);
 
                 // On trobar els elements dins l'XML amb ruta XPATH.
-                XmlNodeList CustomerElements = docCRM.SelectNodes("//customers");
-                XmlNodeList OpportunityElements = docCRM.SelectNodes("//opportunities");
-                XmlNodeList ContactElements = docCRM.SelectNodes("//contacts");
+                XmlNodeList CustomerElements = docCRM.SelectNodes("//customer");
+                XmlNodeList OpportunityElements = docCRM.SelectNodes("//opportunity");
+                XmlNodeList ContactElements = docCRM.SelectNodes("//contact");
 
                 // Per cada element CUSTOMER que es trobi dins l'XML ...
                 foreach (XmlNode customer in CustomerElements)
@@ -48,11 +49,20 @@ namespace ProjecteFinal_m02_m04.Model
                     CustomerModel Customer = new CustomerModel();
 
                     // Emplenar camps Customer
-                    Customer.Id = int.Parse(customer.Attributes["customerId"].InnerText);
+                    Customer.Id = int.Parse(customer.Attributes["id"].InnerText);
                     Customer.Name = customer.SelectSingleNode("name").InnerText;
                     Customer.Email = customer.SelectSingleNode("email").InnerText;
                     Customer.Phone = customer.SelectSingleNode("phone").InnerText;
-                    Customer.Address = $"{customer.Attributes["street"]?.InnerText}, {customer.Attributes["city"]?.InnerText}, {customer.Attributes["state"]?.InnerText}, {customer.Attributes["zipcode"]?.InnerText}";
+
+                    // Extreiem els valors dels atributs
+                    string street = customer.SelectSingleNode("address").Attributes["street"]?.Value;
+                    string city = customer.SelectSingleNode("address").Attributes["city"]?.Value;
+                    string state = customer.SelectSingleNode("address").Attributes["state"]?.Value;
+                    string zipcode = customer.SelectSingleNode("address").Attributes["zipcode"]?.Value;
+
+                    // Ajuntem els atributs en un sol String
+                    string addressString = $"{street} {city} {state} {zipcode}";
+                    Customer.Address = addressString;
 
                     // Afegir customer plè a Array customerList
                     customerList.Add(Customer);
@@ -101,5 +111,22 @@ namespace ProjecteFinal_m02_m04.Model
             }
             return bres;
         }
+    }
+
+    // Enviar Dades a la BBDD
+    public static bool sendDataBBDD()
+    {
+        BBDDManager BBDD = new BBDDManager();
+        bool bres = false;
+
+        try
+        {
+            BBDD.Connect();
+            foreach (var item in collection)
+            {
+                
+            }
+        }
+        return bres;
     }
 }
