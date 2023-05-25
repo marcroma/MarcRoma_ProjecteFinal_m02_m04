@@ -6,8 +6,6 @@ namespace ProjecteFinal_m02_m04.Model
     // Encarregat d'emmagatzemar les dades de l'XML.
     public static class CRMManager
     {
-        // Missatge a mostrar en cas d'error.
-        private static String message = String.Empty;
 
         // === ARRAYLISTS ===
 
@@ -20,6 +18,8 @@ namespace ProjecteFinal_m02_m04.Model
         // Crear ArrayList opportunityList format per OpportunityModels.
         private static List<OpportunityModel> opportunityList = new List<OpportunityModel>();
 
+        // Missatge d'error
+        private static string message;
         // ===
 
 
@@ -54,13 +54,13 @@ namespace ProjecteFinal_m02_m04.Model
                     Customer.Email = customer.SelectSingleNode("email").InnerText;
                     Customer.Phone = customer.SelectSingleNode("phone").InnerText;
 
-                    // Extreiem els valors dels atributs
+                    // Extreiem els valors dels atributs Address
                     string street = customer.SelectSingleNode("address").Attributes["street"]?.Value;
                     string city = customer.SelectSingleNode("address").Attributes["city"]?.Value;
                     string state = customer.SelectSingleNode("address").Attributes["state"]?.Value;
                     string zipcode = customer.SelectSingleNode("address").Attributes["zipcode"]?.Value;
 
-                    // Ajuntem els atributs en un sol String
+                    // Ajuntem els atributs en un sol String addressString
                     string addressString = $"{street} {city} {state} {zipcode}";
                     Customer.Address = addressString;
 
@@ -75,7 +75,7 @@ namespace ProjecteFinal_m02_m04.Model
                     ContactModel Contact = new ContactModel();
 
                     // Emplenar camps Contact
-                    Contact.ContactId = int.Parse(contact.Attributes["customerId"].InnerText);
+                    Contact.ContactId = int.Parse(contact.Attributes["id"].InnerText);
                     Contact.CustomerId = int.Parse(contact.SelectSingleNode("customerId").InnerText);
                     Contact.Name = contact.SelectSingleNode("name").InnerText;
                     Contact.Email = contact.SelectSingleNode("email").InnerText;
@@ -93,7 +93,7 @@ namespace ProjecteFinal_m02_m04.Model
                     OpportunityModel Opportunity = new OpportunityModel();
 
                     // Emplenar camps Opportunity
-                    Opportunity.OpportunityId = int.Parse(opportunity.Attributes["customerId"].InnerText);
+                    Opportunity.OpportunityId = int.Parse(opportunity.Attributes["id"].InnerText);
                     Opportunity.CustomerId = int.Parse(opportunity.SelectSingleNode("customerId").InnerText);
                     Opportunity.Amount = int.Parse(opportunity.SelectSingleNode("amount").InnerText);
                     Opportunity.Status = opportunity.SelectSingleNode("status").InnerText;
@@ -102,31 +102,61 @@ namespace ProjecteFinal_m02_m04.Model
                     opportunityList.Add(Opportunity);
 
                 }
-
                 //}
+                sendDataBBDD();
+                return bres;
             }
             catch
             {
                 message = "El fitxer XML no s'ha pogut carregar.";
+                throw;
+            }
+        }
+
+        // Enviar Dades a la BBDD
+        public static bool sendDataBBDD()
+        {
+            bool bres = false;
+
+            try
+            {
+                if (BBDDManager.Connect())
+                {
+                    // Insertat Customers
+                    foreach (var customer in customerList)
+                    {
+                        int idCustomer = BBDDManager.InsertCustomer(customer);
+                    }
+
+                    // Insertar Contacts
+                    foreach (var contact in contactList)
+                    {
+                        int idContact = BBDDManager.InsertContact(contact);
+                    }
+
+                    // Insertar Opportunities
+                    foreach (var opportunity in opportunityList)
+                    {
+                        int idOpportunity = BBDDManager.InsertOpportunity(opportunity);
+                    }
+
+                    bres = true;
+                }
+                else
+                {
+                    Console.WriteLine("Unable to start the DB.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error upon sending data: " + ex.Message);
+            }
+            finally
+            {
+                BBDDManager.Disconnect();
             }
             return bres;
         }
     }
-
-    // Enviar Dades a la BBDD
-    public static bool sendDataBBDD()
-    {
-        BBDDManager BBDD = new BBDDManager();
-        bool bres = false;
-
-        try
-        {
-            BBDD.Connect();
-            foreach (var item in collection)
-            {
-                
-            }
-        }
-        return bres;
-    }
 }
+
