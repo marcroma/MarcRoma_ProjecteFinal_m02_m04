@@ -1,6 +1,6 @@
-﻿using System.Data;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using ProjecteFinal_m02_m04.Model;
+using System.Data;
 
 namespace ProjecteFinal_m02_m04.BBDD
 {
@@ -207,5 +207,33 @@ namespace ProjecteFinal_m02_m04.BBDD
         }
 
         // ===
+
+        // Stored Procedure per extreure les Dades
+        public static string ExtractData()
+        {
+            string resultVariable = string.Empty;
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                using (MySqlCommand command = new MySqlCommand("ObtainOpportunity.JXHL", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            resultVariable = reader.GetString("XMLResult");
+                        }
+                    }
+                }
+
+                connection.Close();
+            }
+
+            return resultVariable;
+        }
     }
 }

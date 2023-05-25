@@ -21,9 +21,12 @@ namespace ProjecteFinal_m02_m04
                 //int rowsAffedted = 0
                 //BBDDManager.deleteData("contacts");
                 //BBDDManager.deleteData("opportunities");
-                int rowsAffected = BBDDManager.deleteData("customers");
+                //int rowsAffected = BBDDManager.deleteData("customers");
 
                 CRMManager.loadXML(openFileDialog.FileName);
+
+                // Cridar a StoredProcedure per extreure les dades i escriure-les a un fitxer
+                BBDDManager.ExtractData();
             }
         }
 

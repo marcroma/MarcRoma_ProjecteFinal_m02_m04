@@ -1,5 +1,5 @@
-﻿using System.Xml;
-using ProjecteFinal_m02_m04.BBDD;
+﻿using ProjecteFinal_m02_m04.BBDD;
+using System.Xml;
 
 namespace ProjecteFinal_m02_m04.Model
 {
@@ -139,6 +139,7 @@ namespace ProjecteFinal_m02_m04.Model
                     {
                         int idOpportunity = BBDDManager.InsertOpportunity(opportunity);
                     }
+
 
                     bres = true;
                 }
