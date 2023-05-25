@@ -14,6 +14,7 @@ CREATE TABLE contacts (
   phone VARCHAR(255),
   company VARCHAR(255),
   FOREIGN KEY (customerId) REFERENCES customers(id)
+  ON DELETE CASCADE
 );
 
 CREATE TABLE opportunities (
@@ -22,4 +23,5 @@ CREATE TABLE opportunities (
   amount DECIMAL(10,2),
   status VARCHAR(255),
   FOREIGN KEY (customerId) REFERENCES customers(id)
+  ON DELETE CASCADE
 );

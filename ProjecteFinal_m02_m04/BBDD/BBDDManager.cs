@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System.Data;
+using MySql.Data.MySqlClient;
 using ProjecteFinal_m02_m04.Model;
 
 namespace ProjecteFinal_m02_m04.BBDD
@@ -48,6 +49,36 @@ namespace ProjecteFinal_m02_m04.BBDD
         // Iniciar la BBDD
         public static void StartBD()
         {
+
+        }
+
+        // ===
+
+        // Esborrar Dades BBDD
+        public static int deleteData(String tableName)
+        {
+            int rowsAffected = 0;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                string deleteQuery = "DELETE FROM " + tableName;
+
+                MySqlCommand command = new MySqlCommand(deleteQuery, connection);
+                command.CommandType = CommandType.Text;
+
+                try
+                {
+                    rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine("Deleted " + rowsAffected + " rows from the table " + tableName + ".");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error deleting records: " + ex.Message);
+                }
+
+                return rowsAffected;
+            }
 
         }
 

@@ -1,3 +1,4 @@
+using ProjecteFinal_m02_m04.BBDD;
 using ProjecteFinal_m02_m04.Model;
 
 namespace ProjecteFinal_m02_m04
@@ -16,6 +17,12 @@ namespace ProjecteFinal_m02_m04
 
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                // Esborrar Dades actuals de les taules per evitar duplicitat d'informació
+                //int rowsAffedted = 0
+                //BBDDManager.deleteData("contacts");
+                //BBDDManager.deleteData("opportunities");
+                int rowsAffected = BBDDManager.deleteData("customers");
+
                 CRMManager.loadXML(openFileDialog.FileName);
             }
         }
