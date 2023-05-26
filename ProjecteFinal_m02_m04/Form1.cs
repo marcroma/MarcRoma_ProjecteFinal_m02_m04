@@ -25,8 +25,8 @@ namespace ProjecteFinal_m02_m04
 
                 CRMManager.loadXML(openFileDialog.FileName);
 
-                // Cridar a StoredProcedure per extreure les dades i escriure-les a un fitxer
-                BBDDManager.ExtractData();
+                // Cridar a StoredProcedure per extreure les dades
+                // BBDDManager.ExtractData();
             }
         }
 

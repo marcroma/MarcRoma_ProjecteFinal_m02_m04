@@ -209,31 +209,31 @@ namespace ProjecteFinal_m02_m04.BBDD
         // ===
 
         // Stored Procedure per extreure les Dades
-        public static string ExtractData()
-        {
-            string resultVariable = string.Empty;
+        //public static string ExtractData()
+        //{
+        //    string resultVariable = string.Empty;
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
-            {
-                connection.Open();
+        //    using (MySqlConnection connection = new MySqlConnection(connectionString))
+        //    {
+        //        connection.Open();
 
-                using (MySqlCommand command = new MySqlCommand("ObtainOpportunity.JXHL", connection))
-                {
-                    command.CommandType = CommandType.StoredProcedure;
+        //        using (MySqlCommand command = new MySqlCommand("opportunity.ObtainOpportunity", connection))
+        //        {
+        //            command.CommandType = CommandType.StoredProcedure;
 
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            resultVariable = reader.GetString("XMLResult");
-                        }
-                    }
-                }
+        //            using (MySqlDataReader reader = command.ExecuteReader())
+        //            {
+        //                if (reader.Read())
+        //                {
+        //                    resultVariable = reader.GetString("XMLResult");
+        //                }
+        //            }
+        //        }
 
-                connection.Close();
-            }
+        //        connection.Close();
+        //    }
 
-            return resultVariable;
-        }
+        //    return resultVariable;
+        //}
     }
 }
